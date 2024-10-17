@@ -2,10 +2,10 @@ const Cliente = require('../models/cliente');
 
 // Crear un cliente nuevo
 exports.crearCliente = async (req, res) => {
-    const { nombre, direccion, ciudad, susursal, zona, telefono, email } = req.body;
+    const { nombre, direccion, ciudad, sucursal, zona, telefono, email } = req.body;
     try {
         const nuevoCliente = new Cliente({
-            nombre, direccion, ciudad, susursal, zona, telefono, email
+            nombre, direccion, ciudad, sucursal, zona, telefono, email
         });
         await nuevoCliente.save();
         res.status(201).json(nuevoCliente);        
@@ -47,8 +47,8 @@ exports.obtenerClienteId = async (req, res) => {
 // Actualizar cliente
 exports.actualizarCliente = async (req, res) => {
     try {
-        const clieteActualizado = await Cliente.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(clieteActualizado);
+        const clienteActualizado = await Cliente.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(clienteActualizado);
     } catch (error) {
         res.status(500).json({
             message: 'Error al actualizar el cliente'
