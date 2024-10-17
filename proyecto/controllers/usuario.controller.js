@@ -45,13 +45,16 @@ exports.actualizarUsuario = async (req, res) => {
 // Eliminar usuario
 exports.eliminarUsuario = async (req, res) => {
     try {
-        await Usuario.findByIdAndDelete(req.params.id);
-        res.status(201).json({
-            message: 'Usuario eliminado correctamente'
-        });
+        const usuarioEliminado = await Usuario.findByIdAndDelete(req.params.id);
+        if(!usuarioEliminado) {
+            return res.status(404).json({
+                message: "Usuario no encontrado"
+            });
+        }
+        res.json({ message: "Usuario eliminado correctamente"});
     } catch (error) {
         res.status(500).json({
-            message: 'Error al eliminar el usuario'
+            message: `Error al eliminar el usuario ${error}`
         });
     }
 };

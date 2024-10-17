@@ -3,7 +3,7 @@ const {Schema} = mongoose;
 
 // Datro para crear proveedores
 const ProveedorSchema = new Schema ({
-    nomnre: { type: String, require: true },
+    nombre: { type: String, require: true },
     direccion: { type: String, require: true },
     ciudad: { type: String, require: true },
     telefono: { type: String, require: true },

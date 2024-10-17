@@ -48,6 +48,11 @@ exports.obtenerClienteId = async (req, res) => {
 exports.actualizarCliente = async (req, res) => {
     try {
         const clienteActualizado = await Cliente.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if(clienteActualizado) {
+            return res.status(404).json({
+                message: "Clinete no encontrado"
+            });
+        }
         res.json(clienteActualizado);
     } catch (error) {
         res.status(500).json({
@@ -59,13 +64,16 @@ exports.actualizarCliente = async (req, res) => {
 // Eliminar cliente
 exports.eliminarCliente = async (req, res) => {
     try {
-        await Cliente.findOneAndDelete(req.params.id);
-        res.json({
-            message: 'Cliente eliminado correctamente'
-        });
+        const clienteEliminado = await Cliente.findByIdAndDelete(req.params.id);
+        if(!clienteEliminado) {
+            return res.status(404).json({
+                message: "Cliente no encontrado"
+            });
+        }
+        res.json({ message: "Cliente eliminado correctamente"});
     } catch (error) {
         res.status(500).json({
-            message: 'Error al eliminar el cliente'
+            message: `Error al eliminar el Cliente ${error}`
         });
     }
 };
