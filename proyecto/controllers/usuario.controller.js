@@ -34,10 +34,15 @@ exports.obtenerUsuarios = async (req, res) => {
 exports.actualizarUsuario = async (req, res) => {
     try {
         const usuarioActualizado = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.status(200).json(usuarioActualizado);
+        if(!usuarioActualizado) {
+            return res.status(404).json({
+                message: "Usuario no encontrado"
+            });
+        }
+        res.json(usuarioActualizado);
     } catch (error) {
         res.status().json({
-            message: 'Error al actualizar el usuario'
+            message: `Error al actualizar el usuario ${error}`
         });
     }
 };

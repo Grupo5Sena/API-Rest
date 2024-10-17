@@ -48,7 +48,7 @@ exports.obtenerClienteId = async (req, res) => {
 exports.actualizarCliente = async (req, res) => {
     try {
         const clienteActualizado = await Cliente.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if(clienteActualizado) {
+        if(!clienteActualizado) {
             return res.status(404).json({
                 message: "Clinete no encontrado"
             });

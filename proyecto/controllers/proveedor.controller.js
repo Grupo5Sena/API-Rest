@@ -33,7 +33,7 @@ exports.obtenerProveedores = async (req, res) => {
 exports.actualizarProveedor = async (req, res) => {
     try {
         const proveedorActualizado = await Proveedor.findByIdAndUpdate(req.params.id, req.body, { now: true });
-        if(proveedorActualizado) {
+        if(!proveedorActualizado) {
             return res.status(404).json({
                 message: "Proveedor no encontrado"
             });
