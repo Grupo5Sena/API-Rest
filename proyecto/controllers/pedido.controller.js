@@ -31,20 +31,19 @@ exports.crearPedido = async (req, res) => {
     }
 };
 
-// Obtener todos los pedidos
+// Consultar todos los pedidos
 exports.obtenerPedidos = async (req, res) => {
     try {
         const pedidos = await Pedido.find().populate("cliente"); // Obtiene pedidos y detalles de clientes
         res.json(pedidos); 
     } catch (error) {
         res.status(500).json({
-            message: 'Error al obtener los pedidos',
-            error: error.message
+            message: `Error al obtener los pedidos ${error.message}`
         });
     }
 };
 
-// Obtener un pedido por ID
+// Consultar un pedido por ID
 exports.obtenerPedidoId = async (req, res) => {
     try {
         const pedido = await Pedido.findById(req.params.id).populate("cliente"); // Detalles del cliente incluido
@@ -56,8 +55,7 @@ exports.obtenerPedidoId = async (req, res) => {
         res.json(pedido);
     } catch (error) {
         res.status(500).json({
-            message: 'Error al obtener el pedido',
-            error: error.message
+            message: `Error al obtener el pedido ${error.message}`
         });
     }
 };
@@ -74,8 +72,7 @@ exports.actualizarPedido = async (req, res) => {
         res.json(pedidoActualizado);
     } catch (error) {
         res.status(500).json({
-            message: 'Error al actualizar el pedido',
-            error: error.message
+            message: `Error al actualizar el pedido ${error.message}`
         });
     }
 };
@@ -92,8 +89,7 @@ exports.eliminarPedido = async (req, res) => {
         res.json({ message: 'Pedido eliminado correctamente' });
     } catch (error) {
         res.status(500).json({
-            message: 'Error al eliminar el pedido',
-            error: error.message
+            message: `Error al eliminar el pedido ${error.message}`
         });
     }
 };

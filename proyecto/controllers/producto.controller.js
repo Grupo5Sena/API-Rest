@@ -14,7 +14,7 @@ exports.crearProducto = async (req, res) => {
     }
 };
 
-// Obtener listado de productos
+// Consultar listado de productos
 exports.obtenerProductos = async (req, res) => {
     try {
         const productos = await Producto.find();

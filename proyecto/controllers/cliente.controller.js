@@ -10,11 +10,11 @@ exports.crearCliente = async (req, res) => {
         await nuevoCliente.save();
         res.status(201).json(nuevoCliente);        
     } catch (error) {
-        res.status(500).json({ message: 'Error al crear el cliente' });
+        res.status(500).json({ message: `Error al crear el cliente ${error}` });
     }
 };
 
-// Obtener listado de clientes
+// Consultar clientes
 exports.obtenerClientes = async (req, res) => {
     try {
         const clientes = await Cliente.find();
@@ -26,7 +26,7 @@ exports.obtenerClientes = async (req, res) => {
     }
 };
 
-// Obtener cliente por id
+// Consultar cliente por id
 exports.obtenerClienteId = async (req, res) => {
     try {
         const cliente = await Cliente.findById(req.params.id); 
