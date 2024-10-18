@@ -4,6 +4,10 @@ const clienteController = require('../controllers/cliente.controller');
 const productContrller = require('../controllers/producto.controller');
 const pedidoContrller = require('../controllers/pedido.controller');
 const usuarioController = require('../controllers/usuario.controller');
+const empleadoContrller = require('../controllers/empledo.controller');
+const facturaController = require('../controllers/factura.controller');
+const ordenCompraController = require('../controllers/ordencompra.controller');
+const proveedorController = require('../controllers/proveedor.controller');
 
 
 // Rutas para clientes
@@ -33,6 +37,28 @@ router.get('/usuarios', usuarioController.obtenerUsuarios); // Ruta consultar us
 router.put('/usuarios/:id', usuarioController.actualizarUsuario); // Ruta actualizar usuario
 router.delete('/usuarios/:id', usuarioController.eliminarUsuario); // Ruta eliminar usuario
 
+// Rutas empleados
+router.post('/empleado', empleadoContrller.crearEmpleado); // Ruta crear empleados
+router.get('/empleado', empleadoContrller.obtenerEmpleados); // Ruta consultar empleados
+router.put('/empleado/:id', empleadoContrller.actualizarEmplado); // Ruta Actualizar empleados
+router.delete('/empleado/:id', empleadoContrller.eliminarEmpleado); // Ruta eliminar empleados
 
+// Rutas facturas
+router.post('/factura', facturaController.crearFactura); // Ruta crear facturas
+router.get('/factura', facturaController.obtenerFacturas); // Ruta consultar facturas
+router.put('/factura/:id', facturaController.actualizarFacturas); // Ruta Actualizar facturas
+router.delete('/factura/:id', facturaController.eliminarFactura); // Ruta eliminar facturas
+
+// Rutas ordenes de compra
+router.post('/ordencompra', ordenCompraController.crearOrdenCompra); // Ruta crear ordenes de compra
+router.get('/ordencompra', ordenCompraController.ontenerOrdenCompra); // Ruta consultar ordenes de compra
+router.put('/ordencompra/:id', ordenCompraController.actualizarOrdenCompra); // Ruta Actualizar ordenes de compra
+router.delete('/ordencompra/:id', ordenCompraController.eliminarOrdenCompra); // Ruta eliminar ordenes de compra
+
+// Rutas proveedores
+router.post('/proveedor', proveedorController.crearProveedor); // Ruta crear proveedores
+router.get('/proveedor', proveedorController.obtenerProveedores); // Ruta consultar proveedores
+router.put('/proveedor/:id', proveedorController.actualizarProveedor); // Ruta Actualizar proveedores
+router.delete('/proveedor/:id', proveedorController.eliminarProveedor); // Ruta eliminar proveedores
 
 module.exports = router;
