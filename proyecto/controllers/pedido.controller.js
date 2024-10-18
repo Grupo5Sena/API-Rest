@@ -20,8 +20,7 @@ exports.crearPedido = async (req, res) => {
             productos,
             total,
             estado: "Pendiente" // Estado inicial del pedido
-        });
-    
+        });    
         await nuevoPedido.save();
         res.status(201).json(nuevoPedido);
     } catch (error) {

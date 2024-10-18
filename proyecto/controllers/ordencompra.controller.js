@@ -32,7 +32,7 @@ exports.crearOrdenCompra = async (req, res) => {
 // Consultar orden de compra
 exports.ontenerOrdenCompra = async (req, res) => {
     try {
-        const ordenesCompra = await OrdenCompra.find();
+        const ordenesCompra = await OrdenCompra.find().populate("proveedor");
         res.json(ordenesCompra);
     } catch (error) {
         res.status(500).json({
